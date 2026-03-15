@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
 
   <Route path="general" element={<GeneralModule />} />
   <Route path="about" element={<About />} />
