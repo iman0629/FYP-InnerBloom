@@ -1,0 +1,131 @@
+/* src/styles/AboutLayout.css */
+
+.about-layout-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.left-content {
+  color: #1e293b;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0f766e;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.about-description {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #27c47b;
+  text-align: left;
+  
+  
+}
+
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: #14b8a6;
+  border-radius: 2px;
+}
+
+
+/* Right Side - Floating Image */
+.rightabout-image {
+  position: relative;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s ease;
+}
+
+.floatingabout-image {
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  object-fit: cover;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+  animation: gentle-float 8s ease-in-out infinite;
+  z-index: 2;
+  transition: transform 0.6s ease;
+}
+
+.image-wrapper:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.image-wrapper:hover::before {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .left-content {
+    order: 2;
+  }
+
+  .rightabout-image {
+    order: 1;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .about-layout-section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .image-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}

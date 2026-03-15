@@ -1,0 +1,20 @@
+
+.page-footer {
+  padding: 5px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #a7c7e7 0%, #b2d8b2 50%, #f0fff0 100%);
+  color: rgb(25, 10, 94);
+  margin-top: 2%;
+}
+
+.footer-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  
+}
+
+@media (max-width: 640px){
+  .footer-text{
+    font-size: 0.8rem;
+  }
+}

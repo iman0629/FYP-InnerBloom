@@ -1,0 +1,348 @@
+
+.services-page {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+  background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.service-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── HERO ── */
+.services-hero {
+  padding: 100px 0 140px;
+  background: linear-gradient(135deg, #dde8f3 0%, #d9f7f3 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.service-image-wrapper {
+  position: relative;
+}
+
+.floatingservice-image,
+.floating-module-image {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: 28px;
+  object-fit: cover;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+  animation: gentle-float 8s ease-in-out infinite;
+  z-index: 2;
+  transition: transform 0.6s ease;
+}
+
+.floatingservice-image:hover,
+.floating-module-image:hover {
+  transform: translateY(-20px) scale(1.04);
+}
+
+.hero-title {
+  font-size: 3.6rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+.hero-description {
+  font-size: 1.22rem;
+  line-height: 1.7;
+  text-align: justify;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* ── MODULE SECTIONS ── */
+.module-section {
+  padding: 100px 0;
+  margin-left: 5%;
+}
+
+.module-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items:center;
+}
+
+.reverse {
+  grid-template-columns: 1fr 1fr;
+  direction: rtl;
+}
+
+.reverse > * {
+  direction: ltr;
+}
+
+.module-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0f766e;
+  margin-bottom: 1.2rem;
+}
+
+.module-overview {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 1.8rem;
+}
+
+.module-features {
+  list-style: none;
+  padding: 0;
+  font-size: 1.15rem;
+  line-height: 2.1;
+  margin-bottom: 2rem;
+}
+
+.module-features li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.module-features li::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  position: absolute;
+  left: 0;
+  color: #14b8a6;
+  font-weight: bold;
+}
+
+.module-benefits {
+  font-size: 1.18rem;
+  font-style: italic;
+  color: #475569;
+}
+
+/* ── SPECIALIZED MODULES ── */
+.specialized-section {
+  padding: 100px 0;
+  background: white;
+}
+
+
+.section-heading {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.15;
+  text-align: center;
+  
+}
+
+.section-subheading {
+  font-size: 1.28rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0 0 15rem 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.specialized-text h3 {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #0f766e;
+  margin-top: -10%;
+}
+
+.specialized-layout {
+  display: grid;
+  grid-template-columns: 5fr;     
+  gap: 70px;
+  align-items: start;
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   
+  gap: 20px;
+  margin-left: 20%;
+}
+
+
+.specialized-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  width: 250px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e5e7eb;
+  transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.specialized-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
+  border-color: #14b8a6;
+}
+
+
+.specialized-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-radius: 16px 16px 0 0;
+  transition: all 0.4s ease;
+}
+
+.specialized-card.anxiety::before    { background: #f59e0b; }
+.specialized-card.depression::before { background: #8b5cf6; }
+.specialized-card.ocd::before        { background: #ec4899; }
+.specialized-card.bipolar::before    { background: #06b6d4; }
+.specialized-card.phobia::before     { background: #f97316; }
+
+.specialized-card h4 {
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.9rem;
+}
+
+ .text {
+   font-size: 1rem;
+   font-weight: 700;
+   color: #1f2937;
+   margin: 1rem 0 0.75rem;
+   text-align: center;
+ }
+
+.points {
+  color: #4b5563;
+  font-size: 0.875rem;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.points::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+}
+
+.helptext {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 500;
+  text-align: justify;
+}
+
+
+/* Ready to begin */
+.ready-section {
+  padding: 4rem 0;
+}
+
+.ready-card {
+  background: linear-gradient(to right, #d2acf7, #80a2ec);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+  color: white;
+}
+
+.ready-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ready-description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.ready-button  {
+   padding: 16px 48px;        
+  font-size: 1.35rem;
+  font-weight: 600;
+  background: white;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 12px 40px rgba(80, 200, 120, 0.4);
+  min-width: 240px;         
+  display: inline-block;   
+  text-align: center;
+  white-space: nowrap;  
+}
+
+.ready-button a{
+  color: #111827;
+}
+
+.ready-button:hover {
+  background: #6392f1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  
+
+.module-container {
+  display: grid;
+  grid-template-columns: 2fr ;
+  gap: 20px;
+  text-align: left;
+}
+  .specialized-card{
+    width: 100%;
+   margin-left: -15%;
+  }
+  .specialized-text h3{
+    margin-top:-30% ;
+  }
+
+   .ready-title {
+    font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+  .module-title { font-size: 2.4rem;}
+  .section-heading { font-size: 2.5rem; }
+}
