@@ -37,9 +37,7 @@ function App() {
   <Route path="bipolar" element={<BipolarModule />} />
   <Route path="phobias" element={<PhobiasModule />} />
 
-  {/* 404 Page */}
-  <Route path="*" element={<NotFound />} />
-
+ 
         
        
        
