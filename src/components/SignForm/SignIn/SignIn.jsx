@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/SignFormStyles.css';
+import config from '/src/config.js';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -24,18 +25,29 @@ const SignIn = () => {
     if (errors[e.target.name]) setErrors({ ...errors, [e.target.name]: '' });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Real login API call yahan aayega
-      // Demo ke liye check
-      if (formData.email === 'test@example.com' && formData.password === 'Test@1234') {
-        alert('Login successful! (Demo)');
-        navigate('/chat');
-      } else {
-        setErrors({ general: 'Invalid email or password' });
-      }
+        try {
+            const response = await fetch(`${config.API_BASE_URL}/api/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                navigate('/chat');
+            } else {
+                setErrors({ general: data.message || 'Login failed' });
+            }
+        } catch (error) {
+            setErrors({ general: 'Connection to server failed. Please ensure the backend is running.' });
+        }
     }
   };
 
@@ -70,6 +82,12 @@ const SignIn = () => {
             />
             <label htmlFor="password">Password</label>
             {errors.password && <span className="error-text">{errors.password}</span>}
+          </div>
+
+          <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+            <Link to="/forgot-password" style={{ fontSize: '0.85rem', color: '#2c7a5f', textDecoration: 'none' }}>
+                Forgot Password?
+            </Link>
           </div>
 
           {errors.general && (

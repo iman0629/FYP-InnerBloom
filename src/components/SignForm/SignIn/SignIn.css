@@ -1,0 +1,114 @@
+.signin-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #a7c7e7 0%, #b2d8b2 50%, #f0fff0 100%);
+}
+
+.signin-card {
+  padding: 3.5rem;
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.signin-card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: #1a3c5e;
+}
+
+.signin-card > p {
+  color: #64748b;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-group label {
+  display: block;
+  color: #1e293b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #1e293b;
+  font-size: 1rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #27ae60;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
+}
+
+.signin-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: linear-gradient(90deg, #50c878, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.signin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(80, 200, 120, 0.3);
+}
+
+.signin-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.signin-footer a {
+  color: #27ae60;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.signin-footer a:hover {
+  color: #166534;
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #f87171;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}

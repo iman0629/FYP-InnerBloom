@@ -210,142 +210,126 @@ const MainChatbot = () => {
   const CurrentModuleComponent = modules[currentModule] || GeneralModule; // fallback to GeneralModule
 
   return (
-    <div className="app-container">
-      <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-        <div className="logo">InnerBloom</div>
-        <button onClick={() => setIsSidebarOpen(false)} className="close-btn">
-          ×
-        </button>
-
-        <div className="chat-controls">
-          <button
-            onClick={() => {
-              startNewChat();
-              setIsSidebarOpen(false);
-            }}
-            className="action-btn"
-          >
-            <i className="fas fa-plus"></i> New Chat
-          </button>
-          <button
-            onClick={() => {
-              const newShow = !showHistory;
-              if (newShow) {
+    <div className="chatbot-page">
+      <div className="chat-main-container">
+        <header className="chat-toolbar">
+          <div className="toolbar-left">
+            <button onClick={startNewChat} className="toolbar-btn primary">
+              <i className="fas fa-plus-circle"></i> New Session
+            </button>
+            <button
+              onClick={() => {
+                setShowHistory(!showHistory);
                 setShowMoodTracker(false);
                 setShowExercise(false);
-              }
-              setShowHistory(newShow);
-              setIsSidebarOpen(false);
-            }}
-            className="action-btn"
-          >
-            <i className="fas fa-history"></i> History
-          </button>
+              }}
+              className={`toolbar-btn ${showHistory ? 'active' : ''}`}
+            >
+              <i className="fas fa-history"></i> History
+            </button>
+          </div>
 
-          {currentModule && currentModule !== 'general' && (
-            <div className="specialized-tools">
-              <button
-                className="tool-btn"
-                onClick={() => {
-                  setShowMoodTracker(true);
-                  setShowExercise(false);
-                  setShowHistory(false);
-                  setIsSidebarOpen(false);
-                }}
-              >
-                📊 Mood Tracking
-              </button>
-              <button
-                className="tool-btn"
-                onClick={() => {
-                  setShowExercise(true);
-                  setShowMoodTracker(false);
-                  setShowHistory(false);
-                  setIsSidebarOpen(false);
-                }}
-              >
-                ▶️ 3D Exercise Video
-              </button>
+          <div className="toolbar-right">
+            {currentModule && currentModule !== 'general' && (
+              <>
+                <button
+                  className={`toolbar-btn ${showMoodTracker ? 'active' : ''}`}
+                  onClick={() => {
+                    setShowMoodTracker(true);
+                    setShowExercise(false);
+                    setShowHistory(false);
+                  }}
+                >
+                  <i className="fas fa-chart-line"></i> Mood Tracker
+                </button>
+                <button
+                  className={`toolbar-btn ${showExercise ? 'active' : ''}`}
+                  onClick={() => {
+                    setShowExercise(true);
+                    setShowMoodTracker(false);
+                    setShowHistory(false);
+                  }}
+                >
+                  <i className="fas fa-video"></i> 3D Exercise
+                </button>
+              </>
+            )}
+          </div>
+        </header>
+
+        <div className="chat-body-wrapper">
+          {showHistory ? (
+            <div className="history-grid-container">
+              <div className="history-header">
+                <h2>Your Conversation History</h2>
+                <p>Access and manage your previous sessions</p>
+              </div>
+
+              {chats.length === 0 ? (
+                <div className="empty-state">
+                  <i className="fas fa-comment-slash"></i>
+                  <p>No chat history yet. Start a new session above!</p>
+                </div>
+              ) : (
+                <div className="history-cards-grid">
+                  {chats.map((chat) => (
+                    <div
+                      key={chat.id}
+                      className={`history-card-item ${chat.id === currentChatId ? 'active' : ''}`}
+                      onClick={() => loadChat(chat.id)}
+                    >
+                      <div className="card-badge">
+                        {chat.module ? chat.module.toUpperCase() : 'GENERAL'}
+                      </div>
+                      <div className="card-content">
+                        <h3>Session #{chat.id + 1}</h3>
+                        {chat.messages.length > 0 && (
+                          <p className="last-msg">"{chat.messages[0].text.substring(0, 50)}..."</p>
+                        )}
+                      </div>
+                      <button
+                        className="card-delete-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteChat(chat.id);
+                        }}
+                      >
+                        <i className="fas fa-times-circle"></i>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="chat-interactive-area">
+              {showPopup && <div className="module-status-pill">{popupMessage}</div>}
+
+              {showMoodTracker ? (
+                <div className="embedded-tool">
+                  <MoodTracker onBack={() => setShowMoodTracker(false)} />
+                </div>
+              ) : showExercise ? (
+                <div className="embedded-tool">
+                  <ExercisePlayer selectedModule={currentModule} onBack={handleBack} />
+                </div>
+              ) : (
+                <CurrentModuleComponent
+                  messages={messages}
+                  setMessages={setMessages}
+                  input={input}
+                  setInput={setInput}
+                  handleSend={handleSend}
+                  currentModule={currentModule}
+                  isListening={isListening}
+                  toggleListening={toggleListening}
+                />
+              )}
+              <div ref={messagesEndRef} />
             </div>
           )}
         </div>
-      </aside>
-
-      {isSidebarOpen && <div className="overlay" onClick={() => setIsSidebarOpen(false)} />}
-
-      <main className="main-content">
-        <header className="mobile-header">
-          <button className="menu-toggle" onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
-            <i className="fas fa-bars"></i>
-          </button>
-          <div className="logo">InnerBloom</div>
-        </header>
-
-        {showHistory ? (
-          <div className="history-panel">
-            <h2>Chat History</h2>
-
-            {chats.length === 0 ? (
-              <p className="no-history">No chat history yet...</p>
-            ) : (
-              chats.map((chat) => (
-                <div
-                  key={chat.id}
-                  className={`history-item ${chat.id === currentChatId ? 'active' : ''}`}
-                  onClick={(e) => {
-                    if (e.target.tagName !== 'BUTTON') {
-                      loadChat(chat.id);
-                    }
-                  }}
-                >
-                  <div className="history-item-content">
-                    <span>
-                      Chat {chat.id + 1} ({chat.module ? chat.module.charAt(0).toUpperCase() + chat.module.slice(1) : 'General'})
-                    </span>
-                    {chat.messages.length > 0 && (
-                      <small>{chat.messages[0].text.substring(0, 30)}...</small>
-                    )}
-                  </div>
-
-                  <button
-                    className="delete-chat-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      deleteChat(chat.id);
-                    }}
-                    title="Delete this chat"
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-        ) : (
-          <div className="chat-area">
-            {showPopup && <div className="module-popup">{popupMessage}</div>}
-
-            {showMoodTracker ? (
-              <MoodTracker onBack={() => setShowMoodTracker(false)} />
-            ) : showExercise ? (
-              <ExercisePlayer selectedModule={currentModule} onBack={handleBack} />
-            ) : (
-              <CurrentModuleComponent
-                messages={messages}
-                setMessages={setMessages}
-                input={input}
-                setInput={setInput}
-                handleSend={handleSend}
-                currentModule={currentModule}
-                isListening={isListening}
-                toggleListening={toggleListening}
-              />
-            )}
-
-            <div ref={messagesEndRef} />
-          </div>
-        )}
-      </main>
+      </div>
     </div>
   );
 };

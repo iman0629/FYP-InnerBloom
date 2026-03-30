@@ -205,14 +205,14 @@ const ServicesContent = () => {
       </section>
 
       {/* Ready to begin  */}
-      <section class="ready-section">
-        <div class="ready-container">
-            <div class="ready-card">
-                <h2 class="ready-title">Ready to Begin Your Journey?</h2>
-                <p class="ready-description">
+      <section className="ready-section">
+        <div className="ready-container">
+            <div className="ready-card">
+                <h2 className="ready-title">Ready to Begin Your Journey?</h2>
+                <p className="ready-description">
                     Start with our General Module today and discover personalized support that adapts to your needs.
                 </p>
-                <button class="ready-button">
+                <button className="ready-button">
                   <a href="/signup">
                   Get Started Now</a>
                   </button>

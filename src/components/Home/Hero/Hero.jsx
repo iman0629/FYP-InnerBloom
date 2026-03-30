@@ -1,8 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import "./HeroStyles.css";
 import hero1 from "../../../assets/images/hero1.webp";
 import hero2 from "../../../assets/images/hero2.jpg";
 import hero3 from "../../../assets/images/hero3.png";
+
 const Hero = () => {
+  const navigate = useNavigate();
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const handleStartClick = () => {
+    navigate(isLoggedIn ? '/chat' : '/signup');
+  };
+
   return (
     <section className="hero-section">
       <div className="hero-overlay"></div>
@@ -20,11 +29,9 @@ const Hero = () => {
             Your gentle, private companion for emotional check-ins, mood tracking, personalized guidance, and growth — anytime, anywhere.
           </p>
 
-
-          <button className="start-btn">
-            <a href="/signup">
-            Start Your Journey — Free</a>
-            </button>
+          <button className="start-btn" onClick={handleStartClick}>
+            {isLoggedIn ? 'Go to Dashboard' : 'Start Your Journey — Free'}
+          </button>
         </div>
 
         {/* Right: Animated Phone Mockups */}

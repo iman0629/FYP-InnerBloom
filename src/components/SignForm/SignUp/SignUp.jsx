@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/SignFormStyles.css';
+import config from '/src/config.js';
 import SuccessModal from '../SuccessModal';
 
 const SignUp = () => {
@@ -54,13 +55,26 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Yahan real API call hoga (Firebase / backend)
-      // Abhi demo ke liye success popup
-      setShowSuccess(true);
+      try {
+        const response = await fetch(`${config.API_BASE_URL}/api/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          setShowSuccess(true);
+        } else {
+          const data = await response.json();
+          setErrors({ general: data.error || 'Registration failed' });
+        }
+      } catch (error) {
+        setErrors({ general: 'Connection failed. Ensure the server is running.' });
+      }
     }
   };
 
@@ -148,6 +162,12 @@ const SignUp = () => {
             <label htmlFor="age">Age</label>
             {errors.age && <span className="error-text">{errors.age}</span>}
           </div>
+
+          {errors.general && (
+            <span className="error-text" style={{ textAlign: 'center', display: 'block', marginBottom: '1rem' }}>
+              {errors.general}
+            </span>
+          )}
 
           <button type="submit" className="submit-btn">
             Register Now

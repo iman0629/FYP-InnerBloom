@@ -21,11 +21,11 @@ const Note = () => {
 
             <div className="safety-badges">
               <div className="badge-item">
-                <span className="badge-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <span className="badge-icon"><i className="fa-solid fa-shield-halved"></i></span>
                 <span>Supportive tool only</span>
               </div>
               <div className="badge-item">
-                <span className="badge-icon"><i class="fa-solid fa-land-mine-on"></i></span>
+                <span className="badge-icon"><i className="fa-solid fa-land-mine-on"></i></span>
                 <span>Emergency? Call help</span>
               </div>
             </div>

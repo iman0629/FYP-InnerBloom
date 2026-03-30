@@ -5,7 +5,7 @@ const SuccessModal = ({ onClose }) => {
     <div className="success-modal-overlay">
       <div className="success-modal">
         <div className="success-icon">
-       <i class="fa-solid fa-circle-check"></i>
+       <i className="fa-solid fa-circle-check"></i>
           </div>
         <h2>Registration Successful!</h2>
         <p>Your InnerBloom account has been created successfully.</p>
