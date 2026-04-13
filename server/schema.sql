@@ -4,6 +4,11 @@
 -- ------------------------------------------------------
 -- Server version	10.4.28-MariaDB
 
+CREATE DATABASE IF NOT EXISTS `innerbloom`
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+USE `innerbloom`;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
